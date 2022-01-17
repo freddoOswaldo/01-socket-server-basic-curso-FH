@@ -2,6 +2,7 @@ const express = require("express"); //NOTE servidor de Express
 const http = require("http"); //NOTE servidor de socket.io
 const socketio = require("socket.io"); //NOTE configuracion de socket server
 const path = require("path"); //NOTE para manejar rutas
+const cors = require("cors"); //NOTE para manejar cors
 const Sockets = require("./sockets");
 class Server {
   constructor() {
@@ -15,6 +16,8 @@ class Server {
   middlewares() {
     //NOTE desplegar el directorio publico
     this.app.use(express.static(path.resolve(__dirname , "../public")));
+    //NOTE configurar cors
+    this.app.use(cors());
   }
 
   configureSocket() {
